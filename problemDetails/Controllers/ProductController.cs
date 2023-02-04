@@ -35,9 +35,16 @@ namespace problemDetails.Controllers
         [HttpPost]
         public ActionResult<Product> UpdateProduct(string Sku)
         {
-            var updated = _repository.UpdateProduct(Sku);
+            try{
+                var updated = _repository.UpdateProduct(Sku);
 
-            return Ok(updated);
+                return Ok(updated);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
         }
     }
 }
