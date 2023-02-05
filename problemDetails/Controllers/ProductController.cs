@@ -35,7 +35,7 @@ namespace problemDetails.Controllers
         [HttpPost]
         public ActionResult<Product> UpdateProduct(string Sku)
         {
-            try{
+            /*try{
                 var updated = _repository.UpdateProduct(Sku);
 
                 return Ok(updated);
@@ -43,8 +43,10 @@ namespace problemDetails.Controllers
             catch(Exception e)
             {
                 return BadRequest(e.Message);
-            }
-            
+            }*/
+            var updated = _repository.UpdateProduct(Sku);
+
+                return Ok(updated);
         }
     }
 }

@@ -16,7 +16,8 @@ namespace problemDetails.Data
         }
         public IEnumerable<Product> GetProducts()
         {
-           return _context.Products.ToList();
+           //return _context.Products.ToList();
+           throw new NotImplementedException();
         }
 
         public bool SaveChanges()

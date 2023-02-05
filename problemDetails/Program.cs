@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using problemDetails.Data;
+using problemDetails.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,7 @@ if (app.Environment.IsDevelopment())
     //app.UseSwagger();
     //app.UseSwaggerUI();
 }
-
+app.AddGlobalErrorHandler();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSwaggerUI(options =>

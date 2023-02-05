@@ -1,0 +1,1 @@
+https://dev.to/moe23/net-6-web-api-global-exceptions-handling-1a46
