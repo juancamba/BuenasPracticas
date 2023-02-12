@@ -1,12 +1,19 @@
 using Microsoft.EntityFrameworkCore;
+using problemDetails.Configurations;
 using problemDetails.Data;
+using problemDetails.Exceptions;
 using problemDetails.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+// agregamos filter exeption
+builder.Services.AddControllers(cfg=>{
+    cfg.Filters.Add(typeof(ExceptionFilter));
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -23,7 +30,7 @@ if (app.Environment.IsDevelopment())
     //app.UseSwagger();
     //app.UseSwaggerUI();
 }
-app.AddGlobalErrorHandler();
+app.UseMiddleware<GlobalErrorHandlingMiddleware>(); // aqui llama al GlobalErrorHandlingMiddleware
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSwaggerUI(options =>

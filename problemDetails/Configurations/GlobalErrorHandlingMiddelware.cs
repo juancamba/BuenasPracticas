@@ -31,49 +31,16 @@ namespace problemDetails.Configurations
 
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        HttpStatusCode status;
-        var stackTrace = string.Empty;
-        string message;
-
-        var exceptionType = exception.GetType();
-
-        if (exceptionType == typeof(BadRequestException))
-        {
-            message = exception.Message;
-            status = HttpStatusCode.BadRequest;
-            stackTrace = exception.StackTrace;
-        }
-     
-        else if (exceptionType == typeof(NotImplementedException))
-        {
-            status = HttpStatusCode.NotImplemented;
-            message = exception.Message;
-            stackTrace = exception.StackTrace;
-        }
-        else if (exceptionType == typeof(UnauthorizedAccessException))
-        {
-            status = HttpStatusCode.Unauthorized;
-            message = exception.Message;
-            stackTrace = exception.StackTrace;
-        }
-        else if (exceptionType == typeof(Exceptions.KeyNotFoundException))
-        {
-            status = HttpStatusCode.Unauthorized;
-            message = exception.Message;
-            stackTrace = exception.StackTrace;
-        }
-        else
-        {
-            status = HttpStatusCode.InternalServerError;
-            message = exception.Message;
-            stackTrace = exception.StackTrace;
-        }
-
-        var exceptionResult = JsonSerializer.Serialize(new { error = message, stackTrace });
+        
         context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)status;
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        var error = new Error
+        {
+            StatusCode = context.Response.StatusCode.ToString(),
+            Message = exception.Message
+        };    
 
-        return context.Response.WriteAsync(exceptionResult);
+        return context.Response.WriteAsync(error.ToString());
     }
     }
 }
