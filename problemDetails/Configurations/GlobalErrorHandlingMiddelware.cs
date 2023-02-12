@@ -12,35 +12,35 @@ namespace problemDetails.Configurations
     {
         private readonly RequestDelegate _next;
 
-    public GlobalErrorHandlingMiddleware(RequestDelegate next)
-    {
-        _next = next;
-    }
-
-    public async Task Invoke(HttpContext context)
-    {
-        try
+        public GlobalErrorHandlingMiddleware(RequestDelegate next)
         {
-            await _next(context);
+            _next = next;
         }
-        catch (Exception ex)
+
+        public async Task Invoke(HttpContext context)
         {
-            await HandleExceptionAsync(context, ex);
+            try
+            {
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                await HandleExceptionAsync(context, ex);
+            }
         }
-    }
 
-    private static Task HandleExceptionAsync(HttpContext context, Exception exception)
-    {
-        
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        var error = new Error
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            StatusCode = context.Response.StatusCode.ToString(),
-            Message = exception.Message
-        };    
 
-        return context.Response.WriteAsync(error.ToString());
-    }
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            var error = new Error
+            {
+                StatusCode = context.Response.StatusCode.ToString(),
+                Message = exception.Message
+            };
+
+            return context.Response.WriteAsync(error.ToString());
+        }
     }
 }
