@@ -27,15 +27,15 @@ namespace problemDetails.Controllers
         public ActionResult<IEnumerable<Product>> GetProducts()
         {
 
-            var alquieleres = _repository.GetProducts();
+            var productos = _repository.GetProducts();
             //return Ok(_mapper.Map<IEnumerable<AlquilerDto>>(alquieleres));
 
-            return Ok(alquieleres);
+            return Ok(productos);
         }
         [HttpPost]
         public ActionResult<Product> UpdateProduct(string Sku)
         {
-            /*try{
+            try{
                 var updated = _repository.UpdateProduct(Sku);
 
                 return Ok(updated);
@@ -43,10 +43,8 @@ namespace problemDetails.Controllers
             catch(Exception e)
             {
                 return BadRequest(e.Message);
-            }*/
-            var updated = _repository.UpdateProduct(Sku);
-
-                return Ok(updated);
+            }
+            
         }
     }
 }

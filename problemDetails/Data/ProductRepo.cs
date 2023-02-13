@@ -16,8 +16,8 @@ namespace problemDetails.Data
         }
         public IEnumerable<Product> GetProducts()
         {
-           //return _context.Products.ToList();
-           throw new NotImplementedException();
+           return _context.Products.ToList();
+           //throw new NotImplementedException();
         }
 
         public bool SaveChanges()
@@ -28,6 +28,7 @@ namespace problemDetails.Data
         public Product UpdateProduct(string Sku)
         {
             throw new NotImplementedException();
+            //return new Product{};
         }
     }
 }

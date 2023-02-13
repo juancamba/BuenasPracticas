@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using problemDetails.Configurations;
 using problemDetails.Data;
 using problemDetails.Exceptions;
-using problemDetails.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
     //app.UseSwagger();
     //app.UseSwaggerUI();
 }
-app.UseMiddleware<GlobalErrorHandlingMiddleware>(); // aqui llama al GlobalErrorHandlingMiddleware
+//app.UseMiddleware<GlobalErrorHandlingMiddleware>(); // aqui llama al GlobalErrorHandlingMiddleware
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSwaggerUI(options =>
