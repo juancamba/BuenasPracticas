@@ -22,9 +22,15 @@ namespace problemDetails.Controllers
             _mapper = mapper;
             _logger = logger;
         }
+        public ProductController(IProductRepo repository, ILogger<ProductController> logger)
+        {
+            _repository = repository;
+            
+            _logger = logger;
+        }
 
-       [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetProducts()
+       [HttpGet("ProductList")]
+        public ActionResult<IEnumerable<Product>> ProductList()
         {
 
             var productos = _repository.GetProducts();
@@ -32,11 +38,11 @@ namespace problemDetails.Controllers
 
             return Ok(productos);
         }
-        [HttpPost]
-        public ActionResult<Product> UpdateProduct(string Sku)
+        [HttpPut("updateProduct")]
+        public ActionResult<Product> UpdateProduct(Product product)
         {
             try{
-                var updated = _repository.UpdateProduct(Sku);
+                var updated = _repository.UpdateProduct(product);
 
                 return Ok(updated);
             }
@@ -46,5 +52,7 @@ namespace problemDetails.Controllers
             }
             
         }
+
+        
     }
 }

@@ -11,6 +11,6 @@ namespace problemDetails.Data
         bool SaveChanges();
 
         public IEnumerable<Product> GetProducts();
-        public Product UpdateProduct(string Sku);
+        public Product UpdateProduct(Product product);
     }
 }

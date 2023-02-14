@@ -25,10 +25,13 @@ namespace problemDetails.Data
              return (_context.SaveChanges() >= 0);
         }
 
-        public Product UpdateProduct(string Sku)
+        public Product UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
             //return new Product{};
+             var result = _context.Products.Update(product);
+            _context.SaveChanges();
+            return result.Entity;
         }
     }
 }
