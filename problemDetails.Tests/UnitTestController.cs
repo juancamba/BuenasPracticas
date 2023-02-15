@@ -20,30 +20,24 @@ public class UnitTestController
 
 
     [Fact]
-    public void Test1()
+    public async void Test1()
     {
         var productList = GetProductsData();
-        _productRepo.Setup(x => x.GetProducts()).Returns(productList);
+        _productRepo.Setup(x => x.GetProducts()).ReturnsAsync(productList);
         //mock of ilogger
         var logger = Mock.Of<ILogger<ProductController>>();
         var productController = new ProductController(_productRepo.Object, logger);
 
 
         //act
-        var result = productController.ProductList();
-
+        var actionResult = await productController.ProductList() ;
+        
         //assert
-        Assert.NotNull(result);
+        Assert.NotNull(actionResult);
 
-        //var items = Assert.IsType<ActionResult<IEnumerable<Product>>>(productResult.Value);
-        //Assert.Equal(productList.Count, items.Result.);
-        //Assert.Equal(GetProductsData().ToString(), productResult.ToString());
-        //Assert.True(productList.Equals(productResult));
+        Assert.Equal(productList, ((ObjectResult)actionResult.Result).Value); // Try this it should work
+     
 
-        var okResult = result.Result as OkObjectResult;
-
-        okResult.Should().NotBeNull();
-        okResult?.StatusCode.Should().Be(200);
 
 
     }

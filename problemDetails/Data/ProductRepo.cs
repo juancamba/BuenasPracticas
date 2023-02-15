@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using problemDetails.Models;
 
 namespace problemDetails.Data
@@ -14,9 +15,10 @@ namespace problemDetails.Data
         {
             _context = context;
         }
-        public IEnumerable<Product> GetProducts()
+        public async Task<List<Product>> GetProducts()
         {
-           return _context.Products.ToList();
+           return await _context.Products.ToListAsync();
+
            //throw new NotImplementedException();
         }
 

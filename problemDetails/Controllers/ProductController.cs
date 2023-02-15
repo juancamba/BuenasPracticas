@@ -16,24 +16,19 @@ namespace problemDetails.Controllers
         private readonly ILogger _logger;
         private readonly IMapper _mapper;
         private readonly IProductRepo _repository;
-        public ProductController(IProductRepo repository, IMapper mapper, ILogger<ProductController> logger)
-        {
-            _repository = repository;
-            _mapper = mapper;
-            _logger = logger;
-        }
         public ProductController(IProductRepo repository, ILogger<ProductController> logger)
         {
             _repository = repository;
             
             _logger = logger;
         }
+       
 
        [HttpGet("ProductList")]
-        public ActionResult<IEnumerable<Product>> ProductList()
+        public async Task<ActionResult<IEnumerable<Product>>> ProductList()
         {
 
-            var productos = _repository.GetProducts();
+            var productos = await _repository.GetProducts();
             //return Ok(_mapper.Map<IEnumerable<AlquilerDto>>(alquieleres));
 
             return Ok(productos);

@@ -10,7 +10,7 @@ namespace problemDetails.Data
     {
         bool SaveChanges();
 
-        public IEnumerable<Product> GetProducts();
+        public  Task<List<Product>>  GetProducts();
         public Product UpdateProduct(Product product);
     }
 }
