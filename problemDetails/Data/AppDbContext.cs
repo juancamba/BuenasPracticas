@@ -11,5 +11,6 @@ namespace problemDetails.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt) { }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders {get;set;}
     }
 }

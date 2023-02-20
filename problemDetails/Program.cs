@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using problemDetails.Configurations;
+using problemDetails.Contracts;
 using problemDetails.Data;
+using problemDetails.Data.Contracts;
 using problemDetails.Exceptions;
 
 
@@ -19,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMen"));
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
