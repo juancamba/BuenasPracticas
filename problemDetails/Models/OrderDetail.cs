@@ -13,12 +13,10 @@ namespace problemDetails.Models
         
         [Key]
         [Required]
-        public int Id { get; set; }
-        public int OrderId{get;set;}
-        public int ProductId{get;set;}
-
+        public int OrderDetailId { get; set; }
+        [Required]
+        public Product Product { get; set; }
+        public int OrderId{get;set;} // fk
         public virtual Order Order { get; set; }
-        
-        public virtual Product Product { get; set; }
     }
 }

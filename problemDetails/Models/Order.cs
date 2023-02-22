@@ -10,14 +10,15 @@ namespace problemDetails.Models
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        public int OrderId { get; set; } // key
         [Required]
         public DateTime Date { get; set; }
         [Required]
         public string Customer { get; set; }
 
         // Navigation property
-        public ICollection<OrderDetail> OrderDetail {get;set;}
+        
+        public virtual ICollection<OrderDetail> OrderDetails {get;set;}
 
     }
 }

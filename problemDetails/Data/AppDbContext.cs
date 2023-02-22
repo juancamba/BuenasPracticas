@@ -12,5 +12,15 @@ namespace problemDetails.Data
         public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders {get;set;}
+        protected override void OnModelCreating(ModelBuilder  modelBuilder)
+        {
+            // configures one-to-many relationship
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne<Order>(s => s.Order)
+                .WithMany(g => g.OrderDetails)
+                .HasForeignKey(s => s.OrderId);          
+        }
     }
+
+   
 }
