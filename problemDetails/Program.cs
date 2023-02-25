@@ -23,6 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMe
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<IOrderRepo, OrderRepo>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 var app = builder.Build();
