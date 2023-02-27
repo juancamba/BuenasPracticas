@@ -19,9 +19,13 @@ namespace problemDetails.Profiles
             .ForMember(d=>d.OrderDetails, e=>e.MapFrom(s=>s.OrderDetails))
             
             
+            
             ;
             CreateMap<ProductDto, Product>();
-            CreateMap<OrderDetailDto, OrderDetail>();
+            CreateMap<OrderDetailDto, OrderDetail>()
+            .ForMember(d=>d.Product, e=>e.MapFrom(p=>p.ProductDto))
+            
+            ;
             
         }
     }

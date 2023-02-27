@@ -26,7 +26,7 @@ namespace problemDetails.Contracts
         {
             //throw new NotImplementedException();
             //return new Product{};
-             var result = _context.Orders.Update(order);
+             var result = _context.Orders.Add(order);
             _context.SaveChanges();
             return result.Entity;
         }

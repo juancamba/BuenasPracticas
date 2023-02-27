@@ -29,8 +29,12 @@ namespace problemDetails.Controllers
         {
             try{
                 Order order = _mapper.Map<Order>(orderDto);
-                var res = order;
-                // var result = _repository.CreateOrder(order);
+                //var res = order;
+
+                // a ver con este
+                /// https://stackoverflow.com/questions/70206294/entity-framework-data-insertion-with-nested-object-having-auto-increment-primary
+
+                var result = _repository.CreateOrder(order);
                 //https://learn.microsoft.com/en-us/aspnet/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework-part-6
                 return Ok(1);
             }catch(Exception e)
