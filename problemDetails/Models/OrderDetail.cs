@@ -15,7 +15,8 @@ namespace problemDetails.Models
         [Required]
         public int OrderDetailId { get; set; }
         [Required]
-        public Product Product { get; set; }
+        public string Sku{get;set;}
+        public virtual Product Product { get; set; }
         public int OrderId{get;set;} // fk
         public virtual Order Order { get; set; }
     }

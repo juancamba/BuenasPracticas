@@ -18,7 +18,14 @@ namespace problemDetails.Data
             modelBuilder.Entity<OrderDetail>()
                 .HasOne<Order>(s => s.Order)
                 .WithMany(g => g.OrderDetails)
-                .HasForeignKey(s => s.OrderId);          
+                .HasForeignKey(s => s.OrderId);  
+            
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne<Product>(s => s.Product)
+                .WithMany(s => s.OrderDetails)
+                .HasForeignKey(s => s.Sku)
+                ;
+                            
         }
     }
 

@@ -17,5 +17,7 @@ namespace problemDetails.Models
         public int Units{get;set;}
         [Required]
         public double Price{get;set;}
+
+        public virtual ICollection<OrderDetail> OrderDetails{get;set;}
     }
 }
